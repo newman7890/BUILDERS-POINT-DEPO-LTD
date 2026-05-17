@@ -1,0 +1,403 @@
+﻿<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "on-primary-fixed-variant": "#723600",
+                  "on-primary-container": "#5b2a00",
+                  "inverse-surface": "#2f3131",
+                  "on-primary-fixed": "#311300",
+                  "on-tertiary-fixed": "#001c39",
+                  "on-error-container": "#93000a",
+                  "secondary-container": "#e4e2e1",
+                  "primary-container": "#f58220",
+                  "on-tertiary": "#ffffff",
+                  "on-tertiary-container": "#003869",
+                  "on-error": "#ffffff",
+                  "secondary-fixed-dim": "#c8c6c6",
+                  "on-secondary": "#ffffff",
+                  "on-tertiary-fixed-variant": "#004883",
+                  "inverse-on-surface": "#f1f1f1",
+                  "surface-tint": "#964900",
+                  "on-background": "#1a1c1c",
+                  "on-secondary-fixed-variant": "#474747",
+                  "surface-bright": "#f9f9f9",
+                  "tertiary": "#0060ac",
+                  "surface-dim": "#dadada",
+                  "surface": "#f9f9f9",
+                  "background": "#f9f9f9",
+                  "surface-container": "#eeeeee",
+                  "outline": "#8a7264",
+                  "tertiary-container": "#5fa3f7",
+                  "on-secondary-fixed": "#1b1c1c",
+                  "tertiary-fixed-dim": "#a4c9ff",
+                  "error": "#ba1a1a",
+                  "error-container": "#ffdad6",
+                  "tertiary-fixed": "#d4e3ff",
+                  "inverse-primary": "#ffb786",
+                  "surface-container-high": "#e8e8e8",
+                  "on-surface": "#1a1c1c",
+                  "on-surface-variant": "#564336",
+                  "surface-container-highest": "#e2e2e2",
+                  "outline-variant": "#ddc1b0",
+                  "on-primary": "#ffffff",
+                  "on-secondary-container": "#656464",
+                  "surface-container-low": "#f4f3f3",
+                  "secondary-fixed": "#e4e2e1",
+                  "surface-container-lowest": "#ffffff",
+                  "primary-fixed-dim": "#ffb786",
+                  "primary-fixed": "#ffdcc6",
+                  "surface-variant": "#e2e2e2",
+                  "primary": "#964900",
+                  "secondary": "#5f5e5e"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.125rem",
+                  "lg": "0.25rem",
+                  "xl": "0.5rem",
+                  "full": "0.75rem"
+          },
+          "spacing": {
+                  "max-width": "1280px",
+                  "container-padding-mobile": "16px",
+                  "margin-desktop": "auto",
+                  "base": "8px",
+                  "gutter-desktop": "24px"
+          },
+          "fontFamily": {
+                  "headline-md": ["Inter"],
+                  "body-lg": ["Inter"],
+                  "headline-lg": ["Inter"],
+                  "display-lg": ["Inter"],
+                  "spec-table": ["Inter"],
+                  "body-md": ["Inter"],
+                  "label-caps": ["Inter"],
+                  "headline-lg-mobile": ["Inter"]
+          },
+          "fontSize": {
+                  "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                  "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                  "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                  "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                  "spec-table": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                  "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                  "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                  "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  <script src="cart-system.js" defer></script>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline fixed top-0 left-0 w-full z-50 transition-colors duration-200">
+<div class="flex items-center justify-between px-container-padding-mobile h-14 w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container dark:hover:bg-on-surface-variant p-2 transition-colors">menu</button>
+<a href="home.html" class="flex flex-col leading-none font-black text-primary dark:text-primary-fixed-dim uppercase tracking-tighter hover:opacity-85 transition-opacity">
+  <span class="text-[15px] leading-tight">BUILDERS' POINT DEPO LTD</span>
+  <span class="text-[10px] text-secondary tracking-widest">(BPD LTD)</span>
+</a>
+</div>
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container dark:hover:bg-on-surface-variant p-2 transition-colors">search</button>
+<a href="cart.html" class="relative flex material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container dark:hover:bg-on-surface-variant p-2 transition-colors">
+  shopping_cart
+  <span class="cart-badge absolute -top-1 -right-1 bg-primary text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+</a>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-32 md:pt-24 md:pb-24 max-w-max-width mx-auto px-container-padding-mobile md:px-gutter-desktop">
+<!-- Product Header & Gallery Section -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+<!-- Gallery Column -->
+<div class="md:col-span-7 space-y-4">
+<!-- Main Image -->
+<div class="relative aspect-square bg-white border border-outline-variant overflow-hidden group">
+<img alt="Heavy Duty Rotary Hammer Drill" class="w-full h-full object-cover" data-alt="A professional-grade heavy duty rotary hammer drill in a bright industrial orange and charcoal black finish, positioned on a clean white surface with sharp, industrial lighting. The drill features a robust SDS-plus chuck and an ergonomic side handle. The visual style is crisp and commercial, emphasizing the rugged construction and metallic textures of the tool." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDDJSkQ5j9QWj5MnFElnvQILRb20ZlPFuHwBvNUxxfloP8XCwD-zCOQTJaCW5FbpObNrPhAP6ekCXhsoJU7_Amk7QX7Lw7JDQfbOncGgArNjnjD5CH37WaCyc16FFDddH77Gz53umJUJmxXnLSkuh5B1zikNqW8HK7MAQk9ECfJSfkGN37lE_fGS-e2FfTPB2TQvTGoyZ4s5dxzP6uO_qiuvOxYD5yl-3uNoGPuaGWksYvCVU1sGw9CQDYJhIl0EnYiCQ-owADsOz5"/>
+<div class="absolute top-4 left-4 bg-tertiary text-on-tertiary px-3 py-1 font-label-caps text-label-caps rounded-sm">
+            IN STOCK
+          </div>
+</div>
+<!-- Thumbnails -->
+<div class="grid grid-cols-4 gap-4">
+<div class="aspect-square border-2 border-primary overflow-hidden cursor-pointer">
+<img id="detail-image" alt="Detail View 1" class="w-full h-full object-cover" data-alt="Close up of the ergonomic handle and trigger mechanism of a high-end industrial power tool. The texture of the slip-resistant rubber grip is highly detailed, illuminated by cool-toned studio lights that highlight the structural integrity and professional build quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0peglq2qrwtSGRhxeE3wCKzTOAKswC_N2fvYhxBIqEUTvmMWi0tj5sCLXc5rx-xBG00uDTGWhxhHOtH9uuU-rlxd1sXN42Bbn5tfQg0hSZsrSAgQzGraMJmgkp4W4sMbPOrZNGzuVS_sHNQl7LDI5pQTRrwu2Za3IF8ZfDNrHg1OrICRuW7Kbz8r_29lkoiFuOX05TWySvVUC-WdcYpxUH0f6K6RA1x2vjwILIqQcxpxxEEP2qRLpJXKEVzlOF2BcOgUNsf8eOXf1"/>
+</div>
+<div class="aspect-square border border-outline-variant hover:border-primary overflow-hidden cursor-pointer transition-colors">
+<img alt="Detail View 2" class="w-full h-full object-cover" data-alt="Technical side view of a heavy duty rotary hammer drill on a construction site environment, showing the depth gauge and mode selector switch. The background is slightly blurred featuring concrete textures and steel reinforcements, maintaining a professional industrial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADLlj9SWg0pUzGeXf6x8gj7EeZqpsD2dAuSlpfP8LjjcLpL14x05wq_69JaISDrZ8ufw9hmcnaLcXaEbR1tMZR6px1b5mSiUoxnXU-ILGycsgp2goaQpmCXupl_PEvpfFyYvQDf8DT5oV_9k0fIpjAmUOB3odOsAB9KBR-2SahQM1yrbyVTaJl-XRAoH3zW0TQ5YG2h-Uocd6KZwVSOIKEVxeL7x8R7EoHK6mSgNH8taczAw0U92B3Rcj7w8lQwiv7V0GDHKcCfu9D"/>
+</div>
+<div class="aspect-square border border-outline-variant hover:border-primary overflow-hidden cursor-pointer transition-colors">
+<img alt="Detail View 3" class="w-full h-full object-cover" data-alt="A contractor's hand holding a large rotary hammer drill, demonstrating the scale and professional use-case of the tool. The lighting is natural but strong, highlighting the dust-sealed components and the rugged safety orange plastic casing against a gray architectural backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaw68zu8EWnuIqET2l1dJ5S9AJxWSf0TyfAHxewhKbw8HIHtMOMsD7cimb4-odIFdQLD7PH8lMeruRzkb7IHoWdVgEwJYpbPpWGzoV2hAVEM7Dd86d6cXx-m0QkycLqTj4_r4ECEWf-q0tw-4YZ0afJiuToQjhBJe-FN13skda3ednDz5ioiXs7BjXFmiD4bUZF_5kOHByM3zSkdVmbHcCVH6nmdTrv_4fBD5c8rOk9W5NFJfn25VaELzMruyf7JgG1Q3j94yZEKXv"/>
+</div>
+<div class="aspect-square border border-outline-variant hover:border-primary overflow-hidden cursor-pointer transition-colors flex items-center justify-center bg-surface-container">
+<span class="material-symbols-outlined text-secondary">videocam</span>
+</div>
+</div>
+</div>
+<!-- Specs & Purchase Column -->
+<div class="md:col-span-5 flex flex-col gap-6">
+<div>
+<h1 id="detail-title" class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">XR-9000 Heavy Duty Rotary Hammer Drill</h1>
+<p id="detail-meta" class="font-body-md text-secondary">Model: BPD-7729-XLC | Category: Concrete &amp; Masonry</p>
+<div class="mt-4 flex items-baseline gap-2">
+<span id="detail-price" class="font-display-lg text-primary-container">$489.00</span>
+<span id="detail-old-price" class="font-body-md text-secondary line-through">$545.00</span>
+</div>
+</div>
+<!-- Quick Specs Grid -->
+<div class="grid grid-cols-2 gap-4 border-y border-outline-variant py-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">bolt</span>
+<div>
+<p class="font-label-caps text-label-caps text-secondary">VOLTAGE</p>
+<p class="font-body-md font-bold">54V Max</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">dynamic_feed</span>
+<div>
+<p class="font-label-caps text-label-caps text-secondary">IMPACT ENERGY</p>
+<p class="font-body-md font-bold">13.3 Joules</p>
+</div>
+</div>
+</div>
+<!-- Delivery Estimator -->
+<div class="bg-surface-container p-6 border border-outline-variant">
+<label class="font-label-caps text-label-caps text-on-surface block mb-2" for="zip">DELIVERY ESTIMATOR</label>
+<div class="flex gap-2">
+<input class="flex-grow bg-white border border-outline px-4 py-3 focus:outline-none focus:border-tertiary font-body-md" id="zip" placeholder="Site ZIP Code" type="text"/>
+<button onclick="alert('Checking postcode availability... Delivery is available for this zone!')" class="bg-inverse-surface text-on-tertiary px-6 py-3 font-label-caps text-label-caps hover:bg-on-surface-variant transition-colors">CHECK</button>
+</div>
+<p class="mt-3 font-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+            Estimated delivery: <span class="font-bold">Next Day (Order by 4PM)</span>
+</p>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-3">
+<button id="detail-add-btn" data-action="quick-add" data-id="drill-xr9000" data-title="XR-9000 Heavy Duty Rotary Hammer Drill" data-price="489.00" data-image="https://lh3.googleusercontent.com/aida-public/AB6AXuBDDJSkQ5j9QWj5MnFElnvQILRb20ZlPFuHwBvNUxxfloP8XCwD-zCOQTJaCW5FbpObNrPhAP6ekCXhsoJU7_Amk7QX7Lw7JDQfbOncGgArNjnjD5CH37WaCyc16FFDddH77Gz53umJUJmxXnLSkuh5B1zikNqW8HK7MAQk9ECfJSfkGN37lE_fGS-e2FfTPB2TQvTGoyZ4s5dxzP6uO_qiuvOxYD5yl-3uNoGPuaGWksYvCVU1sGw9CQDYJhIl0EnYiCQ-owADsOz5" data-weight="0.0089" data-sku="BPD-7729-XLC" data-unit="EACH" data-badge="IN STOCK" class="w-full bg-primary-container text-on-primary-container py-4 font-headline-md text-headline-md flex items-center justify-center gap-3 shadow-[0px_4px_0px_0px_rgba(150,73,0,0.3)] hover:translate-y-[1px] hover:shadow-[0px_2px_0px_0px_rgba(150,73,0,0.3)] transition-all">
+<span class="material-symbols-outlined" data-weight="fill">shopping_cart</span>
+            ADD TO CART
+          </button>
+<button class="w-full bg-inverse-surface text-on-tertiary py-4 font-headline-md text-headline-md flex items-center justify-center gap-3 hover:bg-on-secondary-fixed-variant transition-colors">
+<span class="material-symbols-outlined">request_quote</span>
+            REQUEST BULK QUOTE
+          </button>
+</div>
+</div>
+</div>
+<!-- Technical Details Bento Section -->
+<div class="mt-16 grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Detailed Specs Table -->
+<div class="md:col-span-8">
+<h2 class="font-headline-md text-headline-md mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">settings_applications</span>
+          TECHNICAL SPECIFICATIONS
+        </h2>
+<div class="border border-outline-variant overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-high">
+<tr>
+<th class="px-6 py-4 font-label-caps text-label-caps text-secondary border-b border-outline-variant">PROPERTY</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-secondary border-b border-outline-variant">SPECIFICATION</th>
+</tr>
+</thead>
+<tbody class="font-spec-table text-spec-table">
+<tr class="bg-white">
+<td class="px-6 py-4 font-bold border-b border-outline-variant">Impact Energy (EPTA)</td>
+<td class="px-6 py-4 border-b border-outline-variant">13.3 J</td>
+</tr>
+<tr class="bg-surface-container-lowest">
+<td class="px-6 py-4 font-bold border-b border-outline-variant">Vibration (Drilling/Masonry)</td>
+<td class="px-6 py-4 border-b border-outline-variant">9.0 m/s²</td>
+</tr>
+<tr class="bg-white">
+<td class="px-6 py-4 font-bold border-b border-outline-variant">Max. Drilling Capacity (Concrete)</td>
+<td class="px-6 py-4 border-b border-outline-variant">48 mm</td>
+</tr>
+<tr class="bg-surface-container-lowest">
+<td class="px-6 py-4 font-bold border-b border-outline-variant">No Load Speed</td>
+<td class="px-6 py-4 border-b border-outline-variant">177 - 355 rpm</td>
+</tr>
+<tr class="bg-white">
+<td class="px-6 py-4 font-bold border-b border-outline-variant">Weight (Exc. Battery)</td>
+<td class="px-6 py-4 border-b border-outline-variant">8.9 kg</td>
+</tr>
+<tr class="bg-surface-container-lowest">
+<td class="px-6 py-4 font-bold">Chuck Type</td>
+<td class="px-6 py-4">SDS-Max</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Features Sidebar -->
+<div class="md:col-span-4 space-y-6">
+<div class="bg-tertiary text-on-tertiary p-8 border-l-4 border-primary shadow-lg">
+<h3 class="font-headline-md text-headline-md mb-4 uppercase">Industrial Performance</h3>
+<ul class="space-y-4">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary-container">check_circle</span>
+<p class="font-body-md">Anti-Rotation system detects a loss of tool control.</p>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary-container">check_circle</span>
+<p class="font-body-md">Brushless motor for extreme runtime and reduced maintenance.</p>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary-container">check_circle</span>
+<p class="font-body-md">Electronic speed and impact energy control.</p>
+</li>
+</ul>
+</div>
+<div class="bg-white border border-outline-variant p-6 flex items-center justify-between group cursor-pointer hover:border-tertiary transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-4xl text-secondary">menu_book</span>
+<div>
+<p class="font-label-caps text-label-caps text-secondary">DOWNLOADS</p>
+<p class="font-body-md font-bold text-on-surface">Technical Data Sheet (PDF)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary group-hover:text-tertiary transition-transform group-hover:translate-x-1">download</span>
+</div>
+</div>
+</div>
+<!-- Site Location Indicator (Simulated Context) -->
+<div class="mt-16 bg-surface-container-high p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-outline-variant">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 bg-primary-container flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-on-primary-container text-4xl">location_on</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md">Inventory Near You</h4>
+<p class="font-body-md text-secondary">Currently checking stock for: <span class="text-on-surface font-bold">Central London Distribution Hub</span></p>
+</div>
+</div>
+<button onclick="alert('Location picker coming soon!')" class="bg-white border border-outline text-on-surface-variant px-8 py-3 font-label-caps text-label-caps hover:bg-surface-container transition-colors">CHANGE LOCATION</button>
+</div>
+<!-- Footer -->
+<footer class="bg-inverse-surface text-inverse-on-surface mt-16">
+  <div class="max-w-max-width mx-auto px-container-padding-mobile py-14">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+      <div class="md:col-span-1">
+        <div class="flex flex-col leading-none mb-4">
+          <span class="text-[18px] font-black text-primary-fixed uppercase tracking-tighter">BUILDERS' POINT DEPO LTD</span>
+          <span class="text-[11px] font-bold text-secondary-fixed tracking-widest uppercase">(BPD LTD)</span>
+        </div>
+        <p class="text-sm text-secondary-fixed leading-relaxed mb-5">Your trusted partner for professional-grade construction materials. Site-direct pricing for contractors, builders, and developers.</p>
+        <div class="flex items-center gap-3">
+          <a href="https://facebook.com" target="_blank" rel="noopener" title="Facebook" class="w-9 h-9 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity text-white" style="background:#1877F2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener" title="TikTok" class="w-9 h-9 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity text-white" style="background:#010101"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.95a8.16 8.16 0 0 0 4.77 1.53V7.04a4.85 4.85 0 0 1-1-.35z"/></svg></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" title="Instagram" class="w-9 h-9 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity text-white" style="background:linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" title="LinkedIn" class="w-9 h-9 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity text-white" style="background:#0A66C2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-label-caps text-label-caps text-primary-fixed tracking-widest mb-4 uppercase">Quick Links</h4>
+        <ul class="space-y-3 text-sm text-secondary-fixed">
+          <li><a href="home.html" class="hover:text-primary-fixed transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">chevron_right</span>Home</a></li>
+          <li><a href="cement.html" class="hover:text-primary-fixed transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">chevron_right</span>Cement &amp; Aggregates</a></li>
+          <li><a href="cart.html" class="hover:text-primary-fixed transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">chevron_right</span>Procurement Truck</a></li>
+          <li><a href="account.html" class="hover:text-primary-fixed transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">chevron_right</span>Trade Account</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-label-caps text-label-caps text-primary-fixed tracking-widest mb-4 uppercase">Materials</h4>
+        <ul class="space-y-3 text-sm text-secondary-fixed">
+          <li><a href="details.html?id=cement-425-25kg" class="hover:text-primary-fixed transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">chevron_right</span>Portland Cement</a></li>
+          <li><a href="details.html?id=sand-paving-20kg" class="hover:text-primary-fixed transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">chevron_right</span>Kiln Dried Sand</a></li>
+          <li><a href="details.html?id=aggregate-limestone-850kg" class="hover:text-primary-fixed transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">chevron_right</span>Crushed Limestone</a></li>
+          <li><a href="details.html?id=aggregate-gravel-25kg" class="hover:text-primary-fixed transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">chevron_right</span>Washed Pea Gravel</a></li>
+          <li><a href="details.html?id=concrete-rapid-20kg" class="hover:text-primary-fixed transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">chevron_right</span>Rapid Set Concrete</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-label-caps text-label-caps text-primary-fixed tracking-widest mb-4 uppercase">Contact Us</h4>
+        <ul class="space-y-4 text-sm text-secondary-fixed">
+          <li class="flex items-start gap-3"><span class="material-symbols-outlined text-[18px] text-primary-fixed mt-0.5">location_on</span><span>12 Industrial Way, Construction Quarter, CQ1 7BX</span></li>
+          <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[18px] text-primary-fixed">call</span><span>+1 (800) 278-4563</span></li>
+          <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[18px] text-primary-fixed">mail</span><span>orders@bpdltd.com</span></li>
+          <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[18px] text-primary-fixed">schedule</span><span>Mon–Fri: 7AM – 6PM</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-outline pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-secondary-fixed">
+      <span>&copy; 2025 BUILDERS' POINT DEPO LTD. All rights reserved.</span>
+      <div class="flex items-center gap-4">
+        <a href="privacy.html" class="hover:text-primary-fixed transition-colors">Privacy Policy</a>
+        <span class="opacity-40">|</span>
+        <a href="terms.html" class="hover:text-primary-fixed transition-colors">Terms &amp; Conditions</a>
+        
+      </div>
+    </div>
+  </div>
+</footer>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface dark:bg-inverse-surface py-2 px-4 pb-safe border-t border-outline-variant dark:border-outline">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-3 py-1.5 active:scale-95 transition-transform duration-150 hover:text-primary" href="home.html">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed rounded-xl px-3 py-1.5 active:scale-95 transition-transform duration-150" href="cement.html">
+<span class="material-symbols-outlined">construction</span>
+<span class="font-label-caps text-label-caps mt-1">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-3 py-1.5 active:scale-95 transition-transform duration-150 hover:text-primary relative" href="cart.html">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-caps text-label-caps mt-1">Truck</span>
+<span class="cart-badge absolute top-1 right-2 bg-primary text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center hidden">0</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-3 py-1.5 active:scale-95 transition-transform duration-150 hover:text-primary" href="account.html">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Account</span>
+</a>
+</nav>
+<!-- Floating Sticky Bar (Desktop Only) -->
+<div class="hidden md:flex fixed bottom-8 left-1/2 -translate-x-1/2 bg-on-surface text-white px-8 py-4 gap-8 items-center shadow-2xl z-40 border border-outline">
+<div class="flex items-center gap-4 border-r border-white/20 pr-8">
+<img alt="Drill Mini" class="w-10 h-10 object-cover" data-alt="Miniature thumbnail of the industrial rotary hammer drill showcasing the vivid safety orange color and professional build quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLsCvX6_FRMkXiUpTLr2NKPtoiJlmDsK-yVE1L87-GSgFm_tOFRUVdRGVi12fheOeOAMUgRN1b23S6q56lLvbU3ZjVTmfRI582T4cDclaROGEJjJbjyCKOeu3vwSzA-zgYHdfAepIoPXzKPjTzohqV1LWqj7iuguwj3Rt9hEFbRvQJ4ToFFfyplTB1gVclqlQkjaWM1rD95RTo8zBb900trk3A80Goub-7Hrx2TIeuUANLmekpzcyI4T8Bqz2IRoRNSGkfoTl2F8SB"/>
+<p class="font-body-md font-bold">XR-9000 Hammer Drill</p>
+</div>
+<div class="font-headline-md text-primary-container">$489.00</div>
+<button data-action="quick-add" data-id="drill-xr9000" data-title="XR-9000 Heavy Duty Rotary Hammer Drill" data-price="489.00" data-image="https://lh3.googleusercontent.com/aida-public/AB6AXuBDDJSkQ5j9QWj5MnFElnvQILRb20ZlPFuHwBvNUxxfloP8XCwD-zCOQTJaCW5FbpObNrPhAP6ekCXhsoJU7_Amk7QX7Lw7JDQfbOncGgArNjnjD5CH37WaCyc16FFDddH77Gz53umJUJmxXnLSkuh5B1zikNqW8HK7MAQk9ECfJSfkGN37lE_fGS-e2FfTPB2TQvTGoyZ4s5dxzP6uO_qiuvOxYD5yl-3uNoGPuaGWksYvCVU1sGw9CQDYJhIl0EnYiCQ-owADsOz5" data-weight="0.0089" data-sku="BPD-7729-XLC" data-unit="EACH" data-badge="IN STOCK" class="bg-primary-container text-on-primary-container px-8 py-2 font-label-caps text-label-caps hover:bg-surface-tint hover:text-white transition-colors">
+      ADD TO CART
+    </button>
+</div>
+</body></html>
+
+
+
+
+
