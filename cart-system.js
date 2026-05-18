@@ -575,10 +575,6 @@
                             <span class="material-symbols-outlined text-secondary text-[20px]">local_shipping</span>
                             <span class="text-[14px] font-bold text-on-surface dark:text-white uppercase tracking-wide">Procurement Truck</span>
                         </a>
-                        <a href="admin.html" class="flex items-center gap-3 px-6 py-3 hover:bg-surface-container dark:hover:bg-on-surface-variant transition-colors border-t border-outline-variant/50 mt-2 pt-4">
-                            <span class="material-symbols-outlined text-primary-container text-[20px]">admin_panel_settings</span>
-                            <span class="text-[14px] font-bold text-primary-container uppercase tracking-wide">Admin Portal</span>
-                        </a>
                     </nav>
                 </div>
             `;
