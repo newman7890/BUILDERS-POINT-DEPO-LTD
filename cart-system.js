@@ -633,6 +633,7 @@
             const priceEl = document.getElementById('detail-price');
             const oldPriceEl = document.getElementById('detail-old-price');
             const imageEl = document.getElementById('detail-image');
+            const thumb1El = document.getElementById('detail-thumb-1');
             const btnEl = document.getElementById('detail-add-btn');
 
             if (titleEl) titleEl.textContent = product.title;
@@ -640,6 +641,7 @@
             if (priceEl) priceEl.textContent = `$${product.price.toFixed(2)}`;
             if (oldPriceEl) oldPriceEl.textContent = `$${(product.price * 1.15).toFixed(2)}`; // Fake MSRP
             if (imageEl) imageEl.src = product.image;
+            if (thumb1El) thumb1El.src = product.image;
 
             if (btnEl) {
                 btnEl.setAttribute('data-id', product.id);

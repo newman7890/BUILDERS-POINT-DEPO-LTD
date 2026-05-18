@@ -144,23 +144,23 @@
 <div class="md:col-span-7 space-y-4">
 <!-- Main Image -->
 <div class="relative aspect-square bg-white border border-outline-variant overflow-hidden group">
-<img alt="Heavy Duty Rotary Hammer Drill" class="w-full h-full object-cover" data-alt="A professional-grade heavy duty rotary hammer drill in a bright industrial orange and charcoal black finish, positioned on a clean white surface with sharp, industrial lighting. The drill features a robust SDS-plus chuck and an ergonomic side handle. The visual style is crisp and commercial, emphasizing the rugged construction and metallic textures of the tool." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDDJSkQ5j9QWj5MnFElnvQILRb20ZlPFuHwBvNUxxfloP8XCwD-zCOQTJaCW5FbpObNrPhAP6ekCXhsoJU7_Amk7QX7Lw7JDQfbOncGgArNjnjD5CH37WaCyc16FFDddH77Gz53umJUJmxXnLSkuh5B1zikNqW8HK7MAQk9ECfJSfkGN37lE_fGS-e2FfTPB2TQvTGoyZ4s5dxzP6uO_qiuvOxYD5yl-3uNoGPuaGWksYvCVU1sGw9CQDYJhIl0EnYiCQ-owADsOz5"/>
+<img id="detail-image" alt="Heavy Duty Rotary Hammer Drill" class="w-full h-full object-cover transition-opacity duration-200" data-alt="A professional-grade heavy duty rotary hammer drill in a bright industrial orange and charcoal black finish, positioned on a clean white surface with sharp, industrial lighting. The drill features a robust SDS-plus chuck and an ergonomic side handle. The visual style is crisp and commercial, emphasizing the rugged construction and metallic textures of the tool." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDDJSkQ5j9QWj5MnFElnvQILRb20ZlPFuHwBvNUxxfloP8XCwD-zCOQTJaCW5FbpObNrPhAP6ekCXhsoJU7_Amk7QX7Lw7JDQfbOncGgArNjnjD5CH37WaCyc16FFDddH77Gz53umJUJmxXnLSkuh5B1zikNqW8HK7MAQk9ECfJSfkGN37lE_fGS-e2FfTPB2TQvTGoyZ4s5dxzP6uO_qiuvOxYD5yl-3uNoGPuaGWksYvCVU1sGw9CQDYJhIl0EnYiCQ-owADsOz5"/>
 <div class="absolute top-4 left-4 bg-tertiary text-on-tertiary px-3 py-1 font-label-caps text-label-caps rounded-sm">
             IN STOCK
           </div>
 </div>
 <!-- Thumbnails -->
-<div class="grid grid-cols-4 gap-4">
-<div class="aspect-square border-2 border-primary overflow-hidden cursor-pointer">
-<img id="detail-image" alt="Detail View 1" class="w-full h-full object-cover" data-alt="Close up of the ergonomic handle and trigger mechanism of a high-end industrial power tool. The texture of the slip-resistant rubber grip is highly detailed, illuminated by cool-toned studio lights that highlight the structural integrity and professional build quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0peglq2qrwtSGRhxeE3wCKzTOAKswC_N2fvYhxBIqEUTvmMWi0tj5sCLXc5rx-xBG00uDTGWhxhHOtH9uuU-rlxd1sXN42Bbn5tfQg0hSZsrSAgQzGraMJmgkp4W4sMbPOrZNGzuVS_sHNQl7LDI5pQTRrwu2Za3IF8ZfDNrHg1OrICRuW7Kbz8r_29lkoiFuOX05TWySvVUC-WdcYpxUH0f6K6RA1x2vjwILIqQcxpxxEEP2qRLpJXKEVzlOF2BcOgUNsf8eOXf1"/>
+<div id="gallery-thumbnails" class="grid grid-cols-4 gap-4">
+<div onclick="updateMainImage(this)" class="aspect-square border-2 border-primary overflow-hidden cursor-pointer rounded">
+<img id="detail-thumb-1" alt="Detail View 1" class="w-full h-full object-cover" data-alt="Close up of the ergonomic handle and trigger mechanism of a high-end industrial power tool. The texture of the slip-resistant rubber grip is highly detailed, illuminated by cool-toned studio lights that highlight the structural integrity and professional build quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0peglq2qrwtSGRhxeE3wCKzTOAKswC_N2fvYhxBIqEUTvmMWi0tj5sCLXc5rx-xBG00uDTGWhxhHOtH9uuU-rlxd1sXN42Bbn5tfQg0hSZsrSAgQzGraMJmgkp4W4sMbPOrZNGzuVS_sHNQl7LDI5pQTRrwu2Za3IF8ZfDNrHg1OrICRuW7Kbz8r_29lkoiFuOX05TWySvVUC-WdcYpxUH0f6K6RA1x2vjwILIqQcxpxxEEP2qRLpJXKEVzlOF2BcOgUNsf8eOXf1"/>
 </div>
-<div class="aspect-square border border-outline-variant hover:border-primary overflow-hidden cursor-pointer transition-colors">
+<div onclick="updateMainImage(this)" class="aspect-square border border-outline-variant hover:border-primary overflow-hidden cursor-pointer transition-colors rounded">
 <img alt="Detail View 2" class="w-full h-full object-cover" data-alt="Technical side view of a heavy duty rotary hammer drill on a construction site environment, showing the depth gauge and mode selector switch. The background is slightly blurred featuring concrete textures and steel reinforcements, maintaining a professional industrial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADLlj9SWg0pUzGeXf6x8gj7EeZqpsD2dAuSlpfP8LjjcLpL14x05wq_69JaISDrZ8ufw9hmcnaLcXaEbR1tMZR6px1b5mSiUoxnXU-ILGycsgp2goaQpmCXupl_PEvpfFyYvQDf8DT5oV_9k0fIpjAmUOB3odOsAB9KBR-2SahQM1yrbyVTaJl-XRAoH3zW0TQ5YG2h-Uocd6KZwVSOIKEVxeL7x8R7EoHK6mSgNH8taczAw0U92B3Rcj7w8lQwiv7V0GDHKcCfu9D"/>
 </div>
-<div class="aspect-square border border-outline-variant hover:border-primary overflow-hidden cursor-pointer transition-colors">
+<div onclick="updateMainImage(this)" class="aspect-square border border-outline-variant hover:border-primary overflow-hidden cursor-pointer transition-colors rounded">
 <img alt="Detail View 3" class="w-full h-full object-cover" data-alt="A contractor's hand holding a large rotary hammer drill, demonstrating the scale and professional use-case of the tool. The lighting is natural but strong, highlighting the dust-sealed components and the rugged safety orange plastic casing against a gray architectural backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaw68zu8EWnuIqET2l1dJ5S9AJxWSf0TyfAHxewhKbw8HIHtMOMsD7cimb4-odIFdQLD7PH8lMeruRzkb7IHoWdVgEwJYpbPpWGzoV2hAVEM7Dd86d6cXx-m0QkycLqTj4_r4ECEWf-q0tw-4YZ0afJiuToQjhBJe-FN13skda3ednDz5ioiXs7BjXFmiD4bUZF_5kOHByM3zSkdVmbHcCVH6nmdTrv_4fBD5c8rOk9W5NFJfn25VaELzMruyf7JgG1Q3j94yZEKXv"/>
 </div>
-<div class="aspect-square border border-outline-variant hover:border-primary overflow-hidden cursor-pointer transition-colors flex items-center justify-center bg-surface-container">
+<div onclick="updateMainImage(this)" class="aspect-square border border-outline-variant hover:border-primary overflow-hidden cursor-pointer transition-colors flex items-center justify-center bg-surface-container rounded">
 <span class="material-symbols-outlined text-secondary">videocam</span>
 </div>
 </div>
@@ -366,6 +366,27 @@
       ADD TO CART
     </button>
 </div>
+<script>
+function updateMainImage(element) {
+  const img = element.querySelector('img');
+  if (img) {
+    const mainImg = document.getElementById('detail-image');
+    if (mainImg) {
+      mainImg.style.opacity = '0';
+      setTimeout(() => {
+        mainImg.src = img.src;
+        mainImg.style.opacity = '1';
+      }, 150);
+    }
+    document.querySelectorAll('#gallery-thumbnails > div').forEach(el => {
+      el.className = "aspect-square border border-outline-variant hover:border-primary overflow-hidden cursor-pointer transition-colors rounded";
+    });
+    element.className = "aspect-square border-2 border-primary overflow-hidden cursor-pointer rounded";
+  } else if (element.querySelector('.material-symbols-outlined')) {
+    alert('Product demonstration video preview starting...');
+  }
+}
+</script>
 </body></html>
 
 
