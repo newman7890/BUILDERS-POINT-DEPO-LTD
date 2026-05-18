@@ -66,7 +66,6 @@ graph TD
 - **Stealth Admin Management Portal ([admin.html](file:///c:/Users/jonat/OneDrive/Desktop/BUILDERS%27%20POINT%20DEPO%20LTD/admin.html)):** To maintain complete public stealth, all external links, footer links, and drawer items leading to the admin portal have been purged. Access is strictly via direct URL (`/admin.html`), protected by an industrial PIN security gateway (`newman7890` or `bpdadmin`).
 - **Multi-Image Local File Dropzone:** In the admin product creation modal, the legacy URL text field was replaced with an advanced HTML5 drag-and-drop multi-file uploader (`<input type="file" multiple>`). It includes client-side FileReader and canvas compression (converting images to optimized 800px WebP at 80% quality) allowing dozens of high-quality product images to be stored safely within standard browser `localStorage` quotas.
 - **Dynamic Angle Gallery:** `details.html` dynamically renders thumbnail galleries whenever a product has multiple uploaded images.
-- **Brand Logo Integration:** The newly uploaded architectural brand logo (`logo.png`) has been embedded into the top navigation header and footer brand column across all pages, equipped with a clean white backing pad to ensure premium visibility across both light and dark modes.
 
 ---
 
