@@ -193,15 +193,15 @@
 </div>
 </div>
 <!-- Delivery Estimator -->
-<div class="bg-surface-container p-6 border border-outline-variant">
+<div class="bg-surface-container p-6 rounded border border-outline-variant box-border w-full overflow-hidden">
 <label class="font-label-caps text-label-caps text-on-surface block mb-2" for="zip">DELIVERY ESTIMATOR</label>
-<div class="flex gap-2">
-<input class="flex-grow bg-white border border-outline px-4 py-3 focus:outline-none focus:border-tertiary font-body-md" id="zip" placeholder="Site ZIP Code" type="text"/>
-<button onclick="alert('Checking postcode availability... Delivery is available for this zone!')" class="bg-inverse-surface text-on-tertiary px-6 py-3 font-label-caps text-label-caps hover:bg-on-surface-variant transition-colors">CHECK</button>
+<div class="flex gap-2 w-full max-w-full">
+<input class="min-w-0 flex-1 bg-white border border-outline px-4 py-3 focus:outline-none focus:border-tertiary font-body-md box-border" id="zip" placeholder="Site ZIP Code" type="text"/>
+<button onclick="alert('Checking postcode availability... Delivery is available for this zone!')" class="flex-shrink-0 whitespace-nowrap bg-inverse-surface text-on-tertiary px-6 py-3 font-label-caps text-label-caps hover:bg-on-surface-variant transition-colors box-border">CHECK</button>
 </div>
-<p class="mt-3 font-body-md text-on-surface-variant flex items-center gap-2">
-<span class="material-symbols-outlined text-[18px]">local_shipping</span>
-            Estimated delivery: <span class="font-bold">Next Day (Order by 4PM)</span>
+<p class="mt-3 font-body-md text-on-surface-variant flex items-center gap-2 text-xs sm:text-sm">
+<span class="material-symbols-outlined text-[18px] flex-shrink-0">local_shipping</span>
+            <span>Estimated delivery: <span class="font-bold">Next Day (Order by 4PM)</span></span>
 </p>
 </div>
 <!-- Actions -->
