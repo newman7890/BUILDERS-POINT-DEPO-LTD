@@ -83,6 +83,9 @@
         <span class="bg-primary text-white font-bold text-[11px] px-2.5 py-1 rounded tracking-wider uppercase ml-2 hidden sm:inline-block">Admin Portal</span>
       </div>
       <div class="flex items-center gap-4 text-sm font-bold">
+        <button id="btn-admin-logout" onclick="adminLogout()" class="flex items-center gap-1.5 text-error hover:bg-error/20 transition-colors bg-error/10 px-3 py-1.5 rounded border border-error/20 hidden">
+          <span class="material-symbols-outlined text-[18px]">lock</span> Lock Dashboard
+        </button>
         <a href="home.html" class="flex items-center gap-1.5 text-surface-dim hover:text-white transition-colors bg-surface/10 px-3 py-1.5 rounded border border-surface/20">
           <span class="material-symbols-outlined text-[18px]">public</span> View Store
         </a>
@@ -93,11 +96,48 @@
     </div>
   </header>
 
-  <!-- Banner / Quick Announcement -->
-  <div class="bg-primary-container text-on-primary-container py-3 px-4 font-bold text-center text-sm shadow-inner flex items-center justify-center gap-2">
-    <span class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
-    <span>Live Management System: Any changes made here instantly reflect across the entire procurement portal.</span>
+  <!-- Security Gateway Portal -->
+  <div id="admin-login-container" class="flex-grow flex items-center justify-center px-4 py-16 bg-inverse-surface/5 backdrop-blur-sm">
+    <div class="bg-white border border-outline-variant rounded-2xl shadow-2xl max-w-md w-full p-8 text-center">
+      <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-4 border border-primary/20 shadow-inner">
+        <span class="material-symbols-outlined text-3xl">lock_person</span>
+      </div>
+      <h2 class="text-2xl font-black uppercase tracking-tight text-on-surface">Admin Security Check</h2>
+      <p class="text-sm text-secondary mt-1 mb-6">Restricted access for BUILDERS' POINT DEPO LTD management. Please verify your credentials.</p>
+      <form id="admin-login-form" class="space-y-4 text-left">
+        <div>
+          <label class="block text-xs font-bold uppercase text-secondary mb-1">Access PIN / Password</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-3.5 text-secondary text-[18px]">key</span>
+            <input type="password" id="admin-pin-input" required placeholder="Enter admin password..." class="w-full pl-10 pr-10 py-3 border border-outline rounded-lg bg-surface font-mono tracking-widest text-on-surface font-bold focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"/>
+            <button type="button" onclick="togglePinVisibility()" class="material-symbols-outlined absolute right-3 top-3.5 text-secondary hover:text-on-surface">visibility</button>
+          </div>
+          <p id="login-error-msg" class="text-xs font-bold text-error mt-2 hidden">⚠️ Incorrect PIN. Access denied.</p>
+        </div>
+        <div class="flex items-center gap-2 pt-1">
+          <input type="checkbox" id="remember-admin" class="rounded border-outline text-primary focus:ring-primary w-4 h-4"/>
+          <label for="remember-admin" class="text-xs font-bold text-secondary cursor-pointer">Stay logged in on this browser</label>
+        </div>
+        <button type="submit" class="w-full bg-primary text-white font-bold py-3.5 rounded-lg tracking-wider uppercase hover:bg-opacity-90 transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2 mt-4">
+          <span class="material-symbols-outlined text-[20px]">admin_panel_settings</span> Unlock Portal
+        </button>
+      </form>
+      <div class="mt-8 pt-6 border-t border-outline-variant/60 text-xs text-secondary-fixed">
+        <p>Protected by BPD LTD Enterprise Security.</p>
+        <a href="home.html" class="text-primary hover:underline font-bold inline-flex items-center gap-1 mt-2">
+          <span class="material-symbols-outlined text-[14px]">arrow_back</span> Return to Public Store
+        </a>
+      </div>
+    </div>
   </div>
+
+  <!-- Dashboard Overview Container -->
+  <div id="admin-dashboard-container" class="hidden flex-grow flex flex-col w-full">
+    <!-- Banner / Quick Announcement -->
+    <div class="bg-primary-container text-on-primary-container py-3 px-4 font-bold text-center text-sm shadow-inner flex items-center justify-center gap-2">
+      <span class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
+      <span>Live Management System: Any changes made here instantly reflect across the entire procurement portal.</span>
+    </div>
 
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
     
@@ -199,6 +239,7 @@
     </div>
 
   </main>
+  </div>
 
   <!-- Product Edit / Add Modal -->
   <div id="product-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
@@ -379,6 +420,7 @@
           tbody.appendChild(row);
         });
       }
+      window.renderAdminTable = renderAdminTable;
 
       // Search & Filter listeners
       searchInput.addEventListener('input', e => {
@@ -493,8 +535,72 @@
         }, 4000);
       }
 
-      // Initial render
-      renderAdminTable();
+      // Check Authentication State
+      checkAdminAuth();
+    }
+
+    function checkAdminAuth() {
+      const isAuth = sessionStorage.getItem('bpd_admin_authenticated') === 'true' || localStorage.getItem('bpd_admin_authenticated') === 'true';
+      const loginContainer = document.getElementById('admin-login-container');
+      const dashboardContainer = document.getElementById('admin-dashboard-container');
+      const logoutBtn = document.getElementById('btn-admin-logout');
+
+      if (isAuth) {
+        loginContainer.classList.add('hidden');
+        dashboardContainer.classList.remove('hidden');
+        logoutBtn.classList.remove('hidden');
+        if (window.renderAdminTable) window.renderAdminTable();
+      } else {
+        loginContainer.classList.remove('hidden');
+        dashboardContainer.classList.add('hidden');
+        logoutBtn.classList.add('hidden');
+      }
+    }
+
+    // Authentication Submission
+    document.getElementById('admin-login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const pinInput = document.getElementById('admin-pin-input');
+      const errorMsg = document.getElementById('login-error-msg');
+      const remember = document.getElementById('remember-admin').checked;
+      const pin = pinInput.value.trim();
+
+      // Valid PINs: 'newman7890' or 'bpdadmin'
+      if (pin === 'newman7890' || pin === 'bpdadmin') {
+        errorMsg.classList.add('hidden');
+        sessionStorage.setItem('bpd_admin_authenticated', 'true');
+        if (remember) {
+          localStorage.setItem('bpd_admin_authenticated', 'true');
+        }
+        pinInput.value = '';
+        checkAdminAuth();
+        const toast = document.getElementById('admin-toast');
+        document.getElementById('toast-message').textContent = 'Admin authenticated successfully!';
+        toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+        setTimeout(() => toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none'), 3000);
+      } else {
+        errorMsg.classList.remove('hidden');
+        pinInput.focus();
+      }
+    });
+
+    function togglePinVisibility() {
+      const input = document.getElementById('admin-pin-input');
+      if (input.type === 'password') {
+        input.type = 'text';
+      } else {
+        input.type = 'password';
+      }
+    }
+
+    function adminLogout() {
+      sessionStorage.removeItem('bpd_admin_authenticated');
+      localStorage.removeItem('bpd_admin_authenticated');
+      checkAdminAuth();
+      const toast = document.getElementById('admin-toast');
+      document.getElementById('toast-message').textContent = 'Dashboard locked securely.';
+      toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none'), 3000);
     }
   </script>
 </body>
