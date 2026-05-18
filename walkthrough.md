@@ -41,7 +41,6 @@ graph TD
 - **Bonus Premium Theme Handler:** Persists dark/light mode preference across the entire application using local storage and coordinates smooth theme class switching.
 
 ### 2. 🏠 Homepage ([home.html](file:///c:/Users/jonat/OneDrive/Desktop/BUILDERS%27%20POINT%20DEPO%20LTD/home.html))
-- **Live Category Grid:** Clicking categories routes directly to `cement.html` with corresponding URL filter parameters (e.g. `?category=steel` or `?category=aggregates`).
 - **Interactive Quick Add:** Allows trade operators to load key featured materials (like Rebar or Ready-mix concrete) straight into their procurement truck without leaving the homepage, displaying immediate toast feedback.
 
 ### 3. 🔍 Catalog & Search ([cement.html](file:///c:/Users/jonat/OneDrive/Desktop/BUILDERS%27%20POINT%20DEPO%20LTD/cement.html))
