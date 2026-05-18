@@ -310,9 +310,19 @@
           </div>
 
           <div class="md:col-span-2">
-            <label class="block text-xs font-bold uppercase text-secondary mb-1">Image URL *</label>
-            <input type="url" id="field-image" required placeholder="https://..." class="w-full p-3 border border-outline rounded focus:border-primary outline-none font-mono text-sm"/>
-            <p class="text-xs text-secondary mt-1">Provide a high-quality product image URL from Google Cloud, Unsplash, or CDN.</p>
+            <label class="block text-xs font-bold uppercase text-secondary mb-2">Product Images (Upload up to 12+ photos) *</label>
+            <div class="border-2 border-dashed border-outline-variant rounded-lg p-8 text-center hover:border-primary transition-colors cursor-pointer relative bg-surface-container-low group">
+              <input type="file" id="field-image-upload" accept="image/*" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"/>
+              <div class="flex flex-col items-center justify-center pointer-events-none">
+                <span class="material-symbols-outlined text-5xl text-primary group-hover:scale-110 transition-transform mb-2">cloud_upload</span>
+                <p class="font-bold text-base text-on-surface">Click to browse or drag &amp; drop image files here</p>
+                <p class="text-xs text-secondary mt-1">Supports PNG, JPG, WEBP, GIF. Upload 1 to 12+ images. Automatic smart WebP compression enabled.</p>
+              </div>
+            </div>
+            <input type="hidden" id="field-image"/>
+            <div id="image-upload-previews" class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-3 mt-4">
+              <!-- Dynamically populated previews -->
+            </div>
           </div>
         </div>
 
@@ -433,9 +443,86 @@
         renderAdminTable();
       });
 
+      let currentUploadedImages = [];
+
+      function processImageFile(file, callback) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = new Image();
+          img.onload = function() {
+            const maxDim = 800;
+            let w = img.width;
+            let h = img.height;
+            if (w > maxDim || h > maxDim) {
+              if (w > h) {
+                h = Math.round((h * maxDim) / w);
+                w = maxDim;
+              } else {
+                w = Math.round((w * maxDim) / h);
+                h = maxDim;
+              }
+            }
+            const canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            const dataUrl = canvas.toDataURL('image/webp', 0.8);
+            callback(dataUrl);
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function renderImagePreviews() {
+        const container = document.getElementById('image-upload-previews');
+        const hiddenInput = document.getElementById('field-image');
+        container.innerHTML = '';
+        
+        if (currentUploadedImages.length > 0) {
+          hiddenInput.value = currentUploadedImages[0];
+        } else {
+          hiddenInput.value = 'https://images.unsplash.com/photo-1581092160662-0edd4d830491?q=80&w=800&auto=format&fit=crop';
+        }
+
+        currentUploadedImages.forEach((url, idx) => {
+          const card = document.createElement('div');
+          card.className = "relative aspect-square bg-surface-container rounded-lg overflow-hidden border border-outline-variant group shadow-sm flex items-center justify-center";
+          card.innerHTML = `
+            <img src="${url}" class="w-full h-full object-cover"/>
+            <button type="button" onclick="removeUploadedImage(${idx})" class="absolute top-1 right-1 bg-error text-white w-6 h-6 rounded-full flex items-center justify-center opacity-90 hover:opacity-100 shadow transition-opacity z-20" title="Remove image">
+              <span class="material-symbols-outlined text-[14px]">close</span>
+            </button>
+            ${idx === 0 ? `<div class="absolute bottom-0 left-0 right-0 bg-primary text-white text-[9px] font-bold text-center py-0.5 uppercase tracking-wider z-20 pointer-events-none">Cover</div>` : ''}
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      window.removeUploadedImage = function(index) {
+        currentUploadedImages.splice(index, 1);
+        renderImagePreviews();
+      };
+
+      document.getElementById('field-image-upload').addEventListener('change', function(e) {
+        const files = Array.from(e.target.files);
+        if (!files.length) return;
+        
+        files.forEach(file => {
+          processImageFile(file, function(dataUrl) {
+            currentUploadedImages.push(dataUrl);
+            renderImagePreviews();
+          });
+        });
+        e.target.value = '';
+      });
+
       // Modal Triggers
       document.getElementById('btn-open-add-modal').addEventListener('click', () => {
         form.reset();
+        currentUploadedImages = [];
+        renderImagePreviews();
         document.getElementById('modal-title').textContent = 'Add New Product';
         document.getElementById('field-original-id').value = '';
         modal.classList.remove('hidden');
@@ -460,7 +547,9 @@
         document.getElementById('field-unit').value = prod.unit || 'BAG';
         document.getElementById('field-badge').value = prod.badge || 'IN STOCK';
         document.getElementById('field-weight').value = prod.weight || 0.025;
-        document.getElementById('field-image').value = prod.image;
+        
+        currentUploadedImages = prod.gallery && prod.gallery.length > 0 ? [...prod.gallery] : [prod.image];
+        renderImagePreviews();
 
         modal.classList.remove('hidden');
       };
@@ -492,6 +581,7 @@
         
         const origId = document.getElementById('field-original-id').value;
         const newId = document.getElementById('field-id').value.trim();
+        const primaryImage = currentUploadedImages[0] || 'https://images.unsplash.com/photo-1581092160662-0edd4d830491?q=80&w=800&auto=format&fit=crop';
         
         const newProd = {
           id: newId,
@@ -503,7 +593,8 @@
           unit: document.getElementById('field-unit').value.trim().toUpperCase(),
           badge: document.getElementById('field-badge').value,
           weight: parseFloat(document.getElementById('field-weight').value || '0.025'),
-          image: document.getElementById('field-image').value.trim()
+          image: primaryImage,
+          gallery: currentUploadedImages.length > 0 ? [...currentUploadedImages] : [primaryImage]
         };
 
         if (origId) {

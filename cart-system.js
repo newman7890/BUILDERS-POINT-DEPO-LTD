@@ -643,6 +643,20 @@
             if (imageEl) imageEl.src = product.image;
             if (thumb1El) thumb1El.src = product.image;
 
+            const galleryContainer = document.getElementById('gallery-thumbnails');
+            if (galleryContainer && product.gallery && product.gallery.length > 0) {
+                galleryContainer.innerHTML = '';
+                product.gallery.forEach((imgSrc, idx) => {
+                    const thumbDiv = document.createElement('div');
+                    thumbDiv.onclick = function() { if (window.updateMainImage) updateMainImage(this); };
+                    thumbDiv.className = idx === 0 
+                      ? "aspect-square border-2 border-primary overflow-hidden cursor-pointer rounded" 
+                      : "aspect-square border border-outline-variant hover:border-primary overflow-hidden cursor-pointer transition-colors rounded";
+                    thumbDiv.innerHTML = `<img id="detail-thumb-${idx+1}" alt="Product Angle ${idx+1}" class="w-full h-full object-cover" src="${imgSrc}"/>`;
+                    galleryContainer.appendChild(thumbDiv);
+                });
+            }
+
             if (btnEl) {
                 btnEl.setAttribute('data-id', product.id);
                 btnEl.setAttribute('data-title', product.title);
