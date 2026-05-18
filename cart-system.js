@@ -579,6 +579,10 @@
                             <span class="material-symbols-outlined text-secondary text-[20px]">person</span>
                             <span class="text-[14px] font-bold text-on-surface dark:text-white uppercase tracking-wide">Account</span>
                         </a>
+                        <a href="admin.html" class="flex items-center gap-3 px-6 py-3 hover:bg-surface-container dark:hover:bg-on-surface-variant transition-colors border-t border-outline-variant/50 mt-2 pt-4">
+                            <span class="material-symbols-outlined text-primary-container text-[20px]">admin_panel_settings</span>
+                            <span class="text-[14px] font-bold text-primary-container uppercase tracking-wide">Admin Portal</span>
+                        </a>
                     </nav>
                 </div>
             `;
@@ -655,42 +659,140 @@
                 btnEl.setAttribute('data-unit', product.unit);
                 btnEl.setAttribute('data-badge', product.badge || 'IN STOCK');
             }
+        },
+
+        initRegistry: function () {
+            try {
+                const saved = localStorage.getItem('bpd_products');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        this.PRODUCTS_REGISTRY = parsed;
+                    }
+                } else {
+                    localStorage.setItem('bpd_products', JSON.stringify(this.PRODUCTS_REGISTRY));
+                }
+            } catch(e) {
+                console.error('Error loading product registry', e);
+            }
+        },
+
+        saveRegistry: function () {
+            try {
+                localStorage.setItem('bpd_products', JSON.stringify(this.PRODUCTS_REGISTRY));
+            } catch(e) {
+                console.error('Error saving product registry', e);
+            }
+        },
+
+        renderCatalog: function () {
+            const grid = document.getElementById('catalog-product-grid');
+            if (!grid) return;
+
+            grid.innerHTML = '';
+            this.PRODUCTS_REGISTRY.forEach(product => {
+                const badgeClass = product.badge === 'BULK ONLY' ? 'bg-primary text-white' : (product.badge === 'LOW STOCK' ? 'bg-error text-white' : 'bg-tertiary text-white');
+                const priceFormatted = `$${parseFloat(product.price).toFixed(2)}`;
+                
+                const card = document.createElement('div');
+                card.className = "product-card group bg-white dark:bg-surface-container-low border border-outline-variant dark:border-outline flex flex-col transition-all duration-200 cursor-pointer";
+                card.innerHTML = `
+                    <div onclick="window.location.href='details.html?id=${product.id}'" class="relative aspect-square overflow-hidden bg-surface-container">
+                        <img alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${product.image}"/>
+                        <div class="absolute top-3 left-3 ${badgeClass} px-2 py-1 font-label-caps text-label-caps rounded-sm">${product.badge || 'IN STOCK'}</div>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col">
+                        <span class="font-label-caps text-label-caps text-secondary mb-1">${(product.brand || 'BPD GENERIC').toUpperCase()}</span>
+                        <h3 onclick="window.location.href='details.html?id=${product.id}'" class="font-headline-md text-[18px] text-on-surface dark:text-white leading-tight mb-2 hover:text-primary transition-colors">${product.title}</h3>
+                        <div class="mt-auto">
+                            <div class="flex items-baseline gap-2 mb-3">
+                                <span class="font-headline-lg text-primary-container dark:text-primary-fixed">${priceFormatted}</span>
+                                <span class="font-label-caps text-label-caps text-secondary">${product.unit ? 'PER ' + product.unit : 'PER UNIT'}</span>
+                            </div>
+                            <button data-action="quick-add" data-id="${product.id}" data-title="${product.title}" data-price="${product.price}" data-image="${product.image}" data-weight="${product.weight || 0}" data-sku="${product.sku || ''}" data-unit="${product.unit || 'BAG'}" data-badge="${product.badge || 'IN STOCK'}" class="w-full h-12 bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary font-headline-md text-spec-table flex items-center justify-center gap-2 hover:bg-on-primary-fixed-variant dark:hover:bg-primary-container dark:hover:text-on-primary-container transition-colors">
+                                <span class="material-symbols-outlined text-[20px]">local_shipping</span>
+                                ADD TO TRUCK
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            this.bindQuickAdd(grid);
+        },
+
+        renderFavorites: function () {
+            const grid = document.getElementById('home-favorites-grid');
+            if (!grid) return;
+
+            grid.innerHTML = '';
+            // Show first 6 or favorite products
+            const favIds = ['drill-xr18', 'rebar-12mm', 'cement-premium', 'copper-tube', 'cement-425-25kg', 'drill-xr9000'];
+            const favs = this.PRODUCTS_REGISTRY.filter(p => favIds.includes(p.id)).concat(this.PRODUCTS_REGISTRY).slice(0, 6);
+
+            favs.forEach(product => {
+                const badgeClass = product.badge === 'BULK ONLY' ? 'bg-primary text-white' : (product.badge === 'LOW STOCK' ? 'bg-error text-white' : 'bg-tertiary text-white');
+                const priceFormatted = `$${parseFloat(product.price).toFixed(2)}`;
+                
+                const card = document.createElement('div');
+                card.className = "min-w-[280px] md:min-w-[320px] bg-white dark:bg-surface-container-low border border-outline-variant dark:border-outline hover:shadow-lg hover:border-primary transition-all cursor-pointer flex flex-col";
+                card.innerHTML = `
+                    <div onclick="window.location.href='details.html?id=${product.id}'" class="relative aspect-square overflow-hidden bg-surface-container">
+                        <img alt="${product.title}" class="w-full h-full object-cover" src="${product.image}"/>
+                        <div class="absolute top-2 left-2">
+                            <span class="${badgeClass} font-label-caps text-label-caps px-2 py-1 rounded text-xs font-bold uppercase tracking-wider">${product.badge || 'IN STOCK'}</span>
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow">
+                        <p class="font-label-caps text-label-caps text-secondary uppercase">${product.category}</p>
+                        <h4 onclick="window.location.href='details.html?id=${product.id}'" class="font-headline-md text-[18px] text-on-surface dark:text-white mt-1 h-14 overflow-hidden hover:text-primary transition-colors">${product.title}</h4>
+                        <div class="mt-auto pt-2">
+                            <p class="font-headline-lg text-primary mt-2">${priceFormatted}</p>
+                            <button data-action="quick-add" data-id="${product.id}" data-title="${product.title}" data-price="${product.price}" data-image="${product.image}" data-weight="${product.weight || 0}" data-sku="${product.sku || ''}" data-unit="${product.unit || 'BAG'}" data-badge="${product.badge || 'IN STOCK'}" class="w-full mt-4 bg-inverse-surface dark:bg-primary-container text-white dark:text-on-primary-container py-3 font-bold uppercase tracking-wider hover:bg-on-surface-variant transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span> QUICK ADD
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            this.bindQuickAdd(grid);
+        },
+
+        bindQuickAdd: function(root = document) {
+            const quickAddBtns = root.querySelectorAll('[data-action="quick-add"]');
+            quickAddBtns.forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const productData = {
+                        id: this.getAttribute('data-id'),
+                        title: this.getAttribute('data-title'),
+                        price: parseFloat(this.getAttribute('data-price')),
+                        image: this.getAttribute('data-image'),
+                        weight: parseFloat(this.getAttribute('data-weight') || '0'),
+                        sku: this.getAttribute('data-sku'),
+                        unit: this.getAttribute('data-unit'),
+                        badge: this.getAttribute('data-badge') || 'IN STOCK'
+                    };
+                    BPD_Cart.addItem(productData);
+                });
+            });
         }
     };
 
     // Auto Init on Page Load
     document.addEventListener('DOMContentLoaded', function () {
-        // Initialize the cart data and update UI
+        BPD_Cart.initRegistry();
         BPD_Cart.updateCartUI();
-        
-        // Initialize universal search
         BPD_Cart.initSearch();
-        
-        // Initialize dynamic product details
         BPD_Cart.initProductDetails();
-
-        // Initialize mobile menu
         BPD_Cart.initMobileMenu();
-
-        // 1. Hook up quick add buttons in home.html / catalog
-        const quickAddBtns = document.querySelectorAll('[data-action="quick-add"]');
-        quickAddBtns.forEach(btn => {
-            btn.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                const productData = {
-                    id: this.getAttribute('data-id'),
-                    title: this.getAttribute('data-title'),
-                    price: parseFloat(this.getAttribute('data-price')),
-                    image: this.getAttribute('data-image'),
-                    weight: parseFloat(this.getAttribute('data-weight') || '0'),
-                    sku: this.getAttribute('data-sku'),
-                    unit: this.getAttribute('data-unit'),
-                    badge: this.getAttribute('data-badge') || 'IN STOCK'
-                };
-                BPD_Cart.addItem(productData);
-            });
-        });
+        BPD_Cart.renderCatalog();
+        BPD_Cart.renderFavorites();
+        BPD_Cart.bindQuickAdd();
 
         // 2. Setup theme toggle (bonus premium feature for dark mode support!)
         const themeToggleBtns = document.querySelectorAll('.theme-toggle');

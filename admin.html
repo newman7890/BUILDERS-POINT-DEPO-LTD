@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>BUILDERS' POINT DEPO LTD | Admin Management Portal</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary-fixed-variant": "#723600",
+            "on-primary-container": "#5b2a00",
+            "inverse-surface": "#2f3131",
+            "on-primary-fixed": "#311300",
+            "on-tertiary-fixed": "#001c39",
+            "on-error-container": "#93000a",
+            "secondary-container": "#e4e2e1",
+            "primary-container": "#f58220",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-container": "#003869",
+            "on-error": "#ffffff",
+            "secondary-fixed-dim": "#c8c6c6",
+            "on-secondary": "#ffffff",
+            "on-tertiary-fixed-variant": "#004883",
+            "inverse-on-surface": "#f1f1f1",
+            "surface-tint": "#964900",
+            "on-background": "#1a1c1c",
+            "on-secondary-fixed-variant": "#474747",
+            "surface-bright": "#f9f9f9",
+            "tertiary": "#0060ac",
+            "surface-dim": "#dadada",
+            "surface": "#f9f9f9",
+            "background": "#f9f9f9",
+            "surface-container": "#eeeeee",
+            "outline": "#8a7264",
+            "tertiary-container": "#5fa3f7",
+            "on-secondary-fixed": "#1b1c1c",
+            "tertiary-fixed-dim": "#a4c9ff",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "tertiary-fixed": "#d4e3ff",
+            "inverse-primary": "#ffb786",
+            "surface-container-high": "#e8e8e8",
+            "on-surface": "#1a1c1c",
+            "primary": "#8B4513",
+            "secondary": "#57514e",
+            "surface-container-low": "#f3f3f3"
+          },
+          fontFamily: {
+            "headline-lg": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "label-caps": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      line-height: 1;
+    }
+  </style>
+  <script src="cart-system.js" defer></script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md selection:bg-primary-container selection:text-on-primary-container">
+
+  <!-- Admin Header -->
+  <header class="bg-inverse-surface text-white border-b border-outline-variant sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <a href="home.html" class="flex flex-col leading-none font-black text-primary-container uppercase tracking-tighter hover:opacity-85 transition-opacity">
+          <span class="text-[16px] leading-tight text-white">BUILDERS' POINT DEPO LTD</span>
+          <span class="text-[11px] text-primary-container tracking-widest">(BPD LTD)</span>
+        </a>
+        <span class="bg-primary text-white font-bold text-[11px] px-2.5 py-1 rounded tracking-wider uppercase ml-2 hidden sm:inline-block">Admin Portal</span>
+      </div>
+      <div class="flex items-center gap-4 text-sm font-bold">
+        <a href="home.html" class="flex items-center gap-1.5 text-surface-dim hover:text-white transition-colors bg-surface/10 px-3 py-1.5 rounded border border-surface/20">
+          <span class="material-symbols-outlined text-[18px]">public</span> View Store
+        </a>
+        <a href="cement.html" class="flex items-center gap-1.5 text-surface-dim hover:text-white transition-colors">
+          <span class="material-symbols-outlined text-[18px]">construction</span> Catalog
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner / Quick Announcement -->
+  <div class="bg-primary-container text-on-primary-container py-3 px-4 font-bold text-center text-sm shadow-inner flex items-center justify-center gap-2">
+    <span class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
+    <span>Live Management System: Any changes made here instantly reflect across the entire procurement portal.</span>
+  </div>
+
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Dashboard Overview Stats -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white p-6 border border-outline-variant rounded-lg shadow-sm flex items-center justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-secondary">Total Products</p>
+          <h3 id="stat-total-products" class="text-3xl font-black text-on-surface mt-1">0</h3>
+        </div>
+        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+          <span class="material-symbols-outlined text-[28px]">inventory_2</span>
+        </div>
+      </div>
+      <div class="bg-white p-6 border border-outline-variant rounded-lg shadow-sm flex items-center justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-secondary">Active Categories</p>
+          <h3 id="stat-categories" class="text-3xl font-black text-on-surface mt-1">0</h3>
+        </div>
+        <div class="w-12 h-12 bg-tertiary/10 rounded-full flex items-center justify-center text-tertiary">
+          <span class="material-symbols-outlined text-[28px]">category</span>
+        </div>
+      </div>
+      <div class="bg-white p-6 border border-outline-variant rounded-lg shadow-sm flex items-center justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-secondary">Low Stock Alerts</p>
+          <h3 id="stat-low-stock" class="text-3xl font-black text-error mt-1">0</h3>
+        </div>
+        <div class="w-12 h-12 bg-error/10 rounded-full flex items-center justify-center text-error">
+          <span class="material-symbols-outlined text-[28px]">warning</span>
+        </div>
+      </div>
+      <div class="bg-white p-6 border border-outline-variant rounded-lg shadow-sm flex items-center justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-secondary">Avg Product Price</p>
+          <h3 id="stat-avg-price" class="text-3xl font-black text-on-surface mt-1">$0.00</h3>
+        </div>
+        <div class="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center text-green-600">
+          <span class="material-symbols-outlined text-[28px]">payments</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Management Area -->
+    <div class="bg-white border border-outline-variant rounded-lg shadow-sm overflow-hidden">
+      
+      <!-- Top Action Bar -->
+      <div class="p-6 bg-surface border-b border-outline-variant flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-black tracking-tight text-on-surface uppercase">Product Catalog Management</h2>
+          <p class="text-sm text-secondary mt-1">Add new industrial items, adjust site pricing, or manage stock availability.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="btn-open-add-modal" class="bg-primary text-white font-bold px-5 py-3 rounded tracking-wider uppercase flex items-center gap-2 hover:bg-opacity-90 transition-colors shadow">
+            <span class="material-symbols-outlined text-[20px]">add_circle</span> Add New Product
+          </button>
+          <button id="btn-reset-defaults" class="border border-outline text-secondary hover:text-error hover:border-error transition-colors px-4 py-3 rounded font-bold uppercase text-xs flex items-center gap-1.5" title="Reset all inventory to factory BPD defaults">
+            <span class="material-symbols-outlined text-[18px]">refresh</span> Reset Catalog
+          </button>
+        </div>
+      </div>
+
+      <!-- Search & Filter Bar -->
+      <div class="p-4 bg-surface-container-low border-b border-outline-variant flex flex-col sm:flex-row gap-4">
+        <div class="relative flex-grow">
+          <span class="material-symbols-outlined absolute left-3 top-3 text-secondary text-[20px]">search</span>
+          <input id="admin-search-input" type="text" placeholder="Search catalog by title, SKU, or category..." class="w-full pl-10 pr-4 py-2 border border-outline rounded bg-white text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"/>
+        </div>
+        <select id="admin-category-filter" class="border border-outline rounded bg-white px-4 py-2 text-sm font-bold focus:border-primary outline-none min-w-[180px]">
+          <option value="ALL">All Categories</option>
+          <option value="Cement">Cement</option>
+          <option value="Aggregates">Aggregates</option>
+          <option value="Steel">Steel</option>
+          <option value="Power Tools">Power Tools</option>
+          <option value="Plumbing">Plumbing</option>
+          <option value="Electrical">Electrical</option>
+        </select>
+      </div>
+
+      <!-- Products Table -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-surface-container-high text-on-surface uppercase font-bold text-[11px] tracking-wider border-b border-outline-variant">
+              <th class="py-3.5 px-6 w-16">Image</th>
+              <th class="py-3.5 px-6">Product Title & SKU</th>
+              <th class="py-3.5 px-6">Category</th>
+              <th class="py-3.5 px-6">Price</th>
+              <th class="py-3.5 px-6">Status Badge</th>
+              <th class="py-3.5 px-6 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-products-tbody" class="divide-y divide-outline-variant text-sm">
+            <!-- Dynamically populated rows -->
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Product Edit / Add Modal -->
+  <div id="product-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg border border-outline-variant shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8">
+      <div class="flex items-center justify-between pb-4 border-b border-outline-variant mb-6">
+        <h3 id="modal-title" class="text-xl font-black uppercase text-on-surface">Add New Product</h3>
+        <button id="btn-close-modal" class="material-symbols-outlined text-secondary hover:text-on-surface transition-colors">close</button>
+      </div>
+      <form id="product-form" class="space-y-6">
+        <input type="hidden" id="field-original-id"/>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="md:col-span-2">
+            <label class="block text-xs font-bold uppercase text-secondary mb-1">Product Title *</label>
+            <input type="text" id="field-title" required placeholder="e.g., Industrial High-Strength Portland Cement (50kg)" class="w-full p-3 border border-outline rounded focus:border-primary outline-none font-bold"/>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-secondary mb-1">SKU Code *</label>
+            <input type="text" id="field-sku" required placeholder="e.g., CM-PC50-IND" class="w-full p-3 border border-outline rounded focus:border-primary outline-none uppercase font-mono text-sm"/>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-secondary mb-1">Price ($ USD) *</label>
+            <input type="number" step="0.01" id="field-price" required placeholder="e.g., 14.50" class="w-full p-3 border border-outline rounded focus:border-primary outline-none font-bold text-primary"/>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-secondary mb-1">Category *</label>
+            <select id="field-category" required class="w-full p-3 border border-outline rounded focus:border-primary outline-none font-bold bg-white">
+              <option value="Cement">Cement</option>
+              <option value="Aggregates">Aggregates</option>
+              <option value="Steel">Steel</option>
+              <option value="Power Tools">Power Tools</option>
+              <option value="Plumbing">Plumbing</option>
+              <option value="Electrical">Electrical</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-secondary mb-1">Brand</label>
+            <input type="text" id="field-brand" placeholder="e.g., Lafarge, DeWalt, BPD Generic" class="w-full p-3 border border-outline rounded focus:border-primary outline-none font-bold"/>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-secondary mb-1">Selling Unit</label>
+            <input type="text" id="field-unit" placeholder="e.g., BAG, EACH, BUNDLE (2.5t)" class="w-full p-3 border border-outline rounded focus:border-primary outline-none font-bold uppercase"/>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-secondary mb-1">Stock Status Badge</label>
+            <select id="field-badge" class="w-full p-3 border border-outline rounded focus:border-primary outline-none font-bold bg-white">
+              <option value="IN STOCK">IN STOCK</option>
+              <option value="LOW STOCK">LOW STOCK</option>
+              <option value="BULK ONLY">BULK ONLY</option>
+              <option value="BEST SELLER">BEST SELLER</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-secondary mb-1">Weight (kg / tons)</label>
+            <input type="number" step="0.001" id="field-weight" placeholder="e.g., 0.025" class="w-full p-3 border border-outline rounded focus:border-primary outline-none"/>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-secondary mb-1">Unique Product ID (Slug)</label>
+            <input type="text" id="field-id" required placeholder="e.g., cement-50kg-ind" class="w-full p-3 border border-outline rounded focus:border-primary outline-none font-mono text-sm"/>
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="block text-xs font-bold uppercase text-secondary mb-1">Image URL *</label>
+            <input type="url" id="field-image" required placeholder="https://..." class="w-full p-3 border border-outline rounded focus:border-primary outline-none font-mono text-sm"/>
+            <p class="text-xs text-secondary mt-1">Provide a high-quality product image URL from Google Cloud, Unsplash, or CDN.</p>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-outline-variant flex items-center justify-end gap-3">
+          <button type="button" id="btn-cancel-modal" class="border border-outline text-secondary font-bold px-6 py-3 rounded tracking-wider uppercase hover:bg-surface transition-colors">Cancel</button>
+          <button type="submit" class="bg-primary text-white font-bold px-8 py-3 rounded tracking-wider uppercase hover:bg-opacity-90 transition-colors shadow">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="admin-toast" class="fixed bottom-6 right-6 bg-inverse-surface text-white px-6 py-4 rounded-lg shadow-2xl flex items-center gap-3 z-50 transition-all duration-300 transform translate-y-24 opacity-0 pointer-events-none">
+    <span class="material-symbols-outlined text-green-400">check_circle</span>
+    <span id="toast-message" class="font-bold text-sm">Product updated successfully!</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-inverse-surface text-white mt-20 border-t border-outline-variant py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-bold text-surface-dim">
+      <span>&copy; 2025 BUILDERS' POINT DEPO LTD. All rights reserved.</span>
+      <div class="flex items-center gap-4">
+        <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+        <span class="opacity-40">|</span>
+        <a href="terms.html" class="hover:text-white transition-colors">Terms &amp; Conditions</a>
+        <span class="opacity-40">|</span>
+        <a href="admin.html" class="text-primary-container hover:text-white transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-[14px]">admin_panel_settings</span>Admin Portal
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Local Admin Logic hooking into BPD_Cart
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(initAdminPortal, 100);
+    });
+
+    function initAdminPortal() {
+      if (!window.BPD_Cart) return;
+
+      const searchInput = document.getElementById('admin-search-input');
+      const categoryFilter = document.getElementById('admin-category-filter');
+      const tbody = document.getElementById('admin-products-tbody');
+      const modal = document.getElementById('product-modal');
+      const form = document.getElementById('product-form');
+      const toast = document.getElementById('admin-toast');
+
+      let currentSearch = '';
+      let currentCategory = 'ALL';
+
+      // Load products and stats
+      function renderAdminTable() {
+        const products = window.BPD_Cart.PRODUCTS_REGISTRY;
+        
+        // Calculate Stats
+        document.getElementById('stat-total-products').textContent = products.length;
+        const categories = new Set(products.map(p => p.category)).size;
+        document.getElementById('stat-categories').textContent = categories;
+        const lowStock = products.filter(p => p.badge === 'LOW STOCK').length;
+        document.getElementById('stat-low-stock').textContent = lowStock;
+        const avgPrice = (products.reduce((acc, p) => acc + parseFloat(p.price || 0), 0) / (products.length || 1)).toFixed(2);
+        document.getElementById('stat-avg-price').textContent = '$' + avgPrice;
+
+        tbody.innerHTML = '';
+        
+        let filtered = products.filter(p => {
+          const matchQuery = !currentSearch || p.title.toLowerCase().includes(currentSearch) || p.sku.toLowerCase().includes(currentSearch) || p.category.toLowerCase().includes(currentSearch);
+          const matchCat = currentCategory === 'ALL' || p.category === currentCategory;
+          return matchQuery && matchCat;
+        });
+
+        if (filtered.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="6" class="text-center py-8 text-secondary font-bold">No matching products found in the catalog.</td></tr>`;
+          return;
+        }
+
+        filtered.forEach(p => {
+          const badgeBg = p.badge === 'BULK ONLY' ? 'bg-primary text-white' : (p.badge === 'LOW STOCK' ? 'bg-error text-white' : 'bg-green-600 text-white');
+          const row = document.createElement('tr');
+          row.className = "hover:bg-surface transition-colors border-b border-outline-variant";
+          row.innerHTML = `
+            <td class="py-3 px-6">
+              <div class="w-12 h-12 bg-surface-container rounded overflow-hidden border border-outline-variant flex items-center justify-center">
+                <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover"/>
+              </div>
+            </td>
+            <td class="py-3 px-6">
+              <div class="font-bold text-on-surface text-base">${p.title}</div>
+              <div class="text-xs font-mono text-secondary mt-0.5">SKU: ${p.sku || 'N/A'} | Slug: ${p.id}</div>
+            </td>
+            <td class="py-3 px-6"><span class="bg-surface-container-high px-2.5 py-1 rounded text-xs font-bold uppercase">${p.category}</span></td>
+            <td class="py-3 px-6 font-bold text-primary">$${parseFloat(p.price).toFixed(2)}</td>
+            <td class="py-3 px-6"><span class="${badgeBg} px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider">${p.badge || 'IN STOCK'}</span></td>
+            <td class="py-3 px-6 text-right space-x-2">
+              <button onclick="editProduct('${p.id}')" class="bg-surface-container hover:bg-primary hover:text-white px-3 py-1.5 rounded font-bold text-xs transition-colors border border-outline-variant inline-flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">edit</span> Edit
+              </button>
+              <button onclick="deleteProduct('${p.id}')" class="bg-surface-container hover:bg-error hover:text-white px-3 py-1.5 rounded font-bold text-xs transition-colors border border-outline-variant inline-flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">delete</span> Delete
+              </button>
+            </td>
+          `;
+          tbody.appendChild(row);
+        });
+      }
+
+      // Search & Filter listeners
+      searchInput.addEventListener('input', e => {
+        currentSearch = e.target.value.trim().toLowerCase();
+        renderAdminTable();
+      });
+
+      categoryFilter.addEventListener('change', e => {
+        currentCategory = e.target.value;
+        renderAdminTable();
+      });
+
+      // Modal Triggers
+      document.getElementById('btn-open-add-modal').addEventListener('click', () => {
+        form.reset();
+        document.getElementById('modal-title').textContent = 'Add New Product';
+        document.getElementById('field-original-id').value = '';
+        modal.classList.remove('hidden');
+      });
+
+      document.getElementById('btn-close-modal').addEventListener('click', () => modal.classList.add('hidden'));
+      document.getElementById('btn-cancel-modal').addEventListener('click', () => modal.classList.add('hidden'));
+
+      // Edit Global Helper
+      window.editProduct = function(id) {
+        const prod = window.BPD_Cart.PRODUCTS_REGISTRY.find(p => p.id === id);
+        if (!prod) return;
+
+        document.getElementById('modal-title').textContent = 'Edit Product';
+        document.getElementById('field-original-id').value = prod.id;
+        document.getElementById('field-id').value = prod.id;
+        document.getElementById('field-title').value = prod.title;
+        document.getElementById('field-sku').value = prod.sku || '';
+        document.getElementById('field-price').value = prod.price;
+        document.getElementById('field-category').value = prod.category;
+        document.getElementById('field-brand').value = prod.brand || 'BPD Generic';
+        document.getElementById('field-unit').value = prod.unit || 'BAG';
+        document.getElementById('field-badge').value = prod.badge || 'IN STOCK';
+        document.getElementById('field-weight').value = prod.weight || 0.025;
+        document.getElementById('field-image').value = prod.image;
+
+        modal.classList.remove('hidden');
+      };
+
+      // Delete Global Helper
+      window.deleteProduct = function(id) {
+        const prod = window.BPD_Cart.PRODUCTS_REGISTRY.find(p => p.id === id);
+        if (!prod) return;
+
+        if (confirm(`Are you sure you want to delete "${prod.title}" from the catalog?`)) {
+          window.BPD_Cart.PRODUCTS_REGISTRY = window.BPD_Cart.PRODUCTS_REGISTRY.filter(p => p.id !== id);
+          window.BPD_Cart.saveRegistry();
+          renderAdminTable();
+          showToast(`Deleted "${prod.title}" successfully.`);
+        }
+      };
+
+      // Reset Defaults
+      document.getElementById('btn-reset-defaults').addEventListener('click', () => {
+        if (confirm('Are you sure you want to restore the default BPD LTD catalog? Any custom uploaded items will be replaced with original factory inventory.')) {
+          localStorage.removeItem('bpd_products');
+          window.location.reload();
+        }
+      });
+
+      // Form Submit (Save / Update)
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const origId = document.getElementById('field-original-id').value;
+        const newId = document.getElementById('field-id').value.trim();
+        
+        const newProd = {
+          id: newId,
+          title: document.getElementById('field-title').value.trim(),
+          sku: document.getElementById('field-sku').value.trim().toUpperCase(),
+          price: parseFloat(document.getElementById('field-price').value),
+          category: document.getElementById('field-category').value,
+          brand: document.getElementById('field-brand').value.trim(),
+          unit: document.getElementById('field-unit').value.trim().toUpperCase(),
+          badge: document.getElementById('field-badge').value,
+          weight: parseFloat(document.getElementById('field-weight').value || '0.025'),
+          image: document.getElementById('field-image').value.trim()
+        };
+
+        if (origId) {
+          // Update
+          const index = window.BPD_Cart.PRODUCTS_REGISTRY.findIndex(p => p.id === origId);
+          if (index !== -1) {
+            window.BPD_Cart.PRODUCTS_REGISTRY[index] = newProd;
+          }
+        } else {
+          // Add new
+          if (window.BPD_Cart.PRODUCTS_REGISTRY.some(p => p.id === newId)) {
+            alert('A product with this unique ID/Slug already exists. Please choose another slug.');
+            return;
+          }
+          window.BPD_Cart.PRODUCTS_REGISTRY.unshift(newProd);
+        }
+
+        window.BPD_Cart.saveRegistry();
+        modal.classList.add('hidden');
+        renderAdminTable();
+        showToast(origId ? 'Product updated successfully!' : 'New product added to catalog!');
+      });
+
+      function showToast(msg) {
+        document.getElementById('toast-message').textContent = msg;
+        toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+        setTimeout(() => {
+          toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+        }, 4000);
+      }
+
+      // Initial render
+      renderAdminTable();
+    }
+  </script>
+</body>
+</html>
