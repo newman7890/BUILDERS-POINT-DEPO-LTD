@@ -331,7 +331,7 @@
                             <div class="mt-4 flex items-center gap-6">
                                 <div>
                                     <p class="font-label-caps text-label-caps text-secondary uppercase">Price / Unit</p>
-                                    <p class="font-body-lg text-body-lg text-on-surface">$${item.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+                                    <p class="font-body-lg text-body-lg text-on-surface">GH₵${item.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
                                 </div>
                                 <div>
                                     <p class="font-label-caps text-label-caps text-secondary uppercase">Weight</p>
@@ -349,7 +349,7 @@
                                 <button onclick="BPD_Cart.removeItem('${item.id}')" class="text-error hover:text-red-700 flex items-center p-1" title="Remove Item">
                                     <span class="material-symbols-outlined text-[20px]">delete</span>
                                 </button>
-                                <p class="font-headline-md text-headline-md text-primary">$${(item.price * item.quantity).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+                                <p class="font-headline-md text-headline-md text-primary">GH₵${(item.price * item.quantity).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
                             </div>
                         </div>
                     </div>
@@ -364,19 +364,19 @@
                         <div class="flex flex-col gap-4">
                             <div class="flex justify-between text-secondary-fixed-dim">
                                 <span class="font-body-md">Subtotal</span>
-                                <span class="font-body-md">$${totals.subtotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                                <span class="font-body-md">GH₵${totals.subtotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
                             </div>
                             <div class="flex justify-between text-secondary-fixed-dim">
                                 <span class="font-body-md">Job Site Delivery Fee</span>
-                                <span class="font-body-md">$${totals.deliveryFee.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                                <span class="font-body-md">GH₵${totals.deliveryFee.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
                             </div>
                             <div class="flex justify-between text-secondary-fixed-dim border-b border-outline-variant pb-4">
                                 <span class="font-body-md">Tax (VAT 20%)</span>
-                                <span class="font-body-md">$${totals.tax.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                                <span class="font-body-md">GH₵${totals.tax.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
                             </div>
                             <div class="flex justify-between py-4">
                                 <span class="font-headline-md text-headline-md text-white uppercase">Total</span>
-                                <span class="font-display-lg text-[32px] font-black text-primary-container">$${totals.total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                                <span class="font-display-lg text-[32px] font-black text-primary-container">GH₵${totals.total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
                             </div>
                             <button onclick="BPD_Cart.checkout()" class="w-full bg-primary-container text-on-primary-container py-4 font-headline-md text-headline-md uppercase tracking-widest hover:bg-primary transition-colors duration-200 active:scale-95 rigid-border border-none mt-4">
                                 Proceed to Payment
@@ -539,7 +539,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-end flex-shrink-0">
-                        <span class="font-headline-md text-primary font-bold">$${item.price.toFixed(2)}</span>
+                        <span class="font-headline-md text-primary font-bold">GH₵${item.price.toFixed(2)}</span>
                         <span class="font-label-caps text-[10px] text-secondary mt-1">${item.badge}</span>
                     </div>
                 </a>
@@ -638,8 +638,8 @@
 
             if (titleEl) titleEl.textContent = product.title;
             if (metaEl) metaEl.textContent = `SKU: ${product.sku} | Category: ${product.category} | Brand: ${product.brand}`;
-            if (priceEl) priceEl.textContent = `$${product.price.toFixed(2)}`;
-            if (oldPriceEl) oldPriceEl.textContent = `$${(product.price * 1.15).toFixed(2)}`; // Fake MSRP
+            if (priceEl) priceEl.textContent = `GH₵${product.price.toFixed(2)}`;
+            if (oldPriceEl) oldPriceEl.textContent = `GH₵${(product.price * 1.15).toFixed(2)}`; // Fake MSRP
             if (imageEl) imageEl.src = product.image;
             if (thumb1El) thumb1El.src = product.image;
 
@@ -700,7 +700,7 @@
             grid.innerHTML = '';
             this.PRODUCTS_REGISTRY.forEach(product => {
                 const badgeClass = product.badge === 'BULK ONLY' ? 'bg-primary text-white' : (product.badge === 'LOW STOCK' ? 'bg-error text-white' : 'bg-tertiary text-white');
-                const priceFormatted = `$${parseFloat(product.price).toFixed(2)}`;
+                const priceFormatted = `GH₵${parseFloat(product.price).toFixed(2)}`;
                 
                 const card = document.createElement('div');
                 card.className = "product-card group bg-white dark:bg-surface-container-low border border-outline-variant dark:border-outline flex flex-col transition-all duration-200 cursor-pointer";
@@ -741,7 +741,7 @@
 
             favs.forEach(product => {
                 const badgeClass = product.badge === 'BULK ONLY' ? 'bg-primary text-white' : (product.badge === 'LOW STOCK' ? 'bg-error text-white' : 'bg-tertiary text-white');
-                const priceFormatted = `$${parseFloat(product.price).toFixed(2)}`;
+                const priceFormatted = `GH₵${parseFloat(product.price).toFixed(2)}`;
                 
                 const card = document.createElement('div');
                 card.className = "min-w-[280px] md:min-w-[320px] bg-white dark:bg-surface-container-low border border-outline-variant dark:border-outline hover:shadow-lg hover:border-primary transition-all cursor-pointer flex flex-col";
