@@ -117,6 +117,38 @@
     body {
       min-height: max(884px, 100dvh);
     }
+    @keyframes ken-burns {
+      0% {
+        transform: scale(1) translate(0, 0);
+      }
+      50% {
+        transform: scale(1.05) translate(-1%, -1%);
+      }
+      100% {
+        transform: scale(1) translate(0, 0);
+      }
+    }
+    .animate-hero-bg {
+      animation: ken-burns 20s ease-in-out infinite;
+      transform-origin: center center;
+    }
+    @keyframes fade-in-up {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in-up {
+      animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
   </style>
   <script src="cart-system.js" defer></script>
   </head>
@@ -143,12 +175,12 @@
 <main class="pt-14 pb-32 md:pb-24">
 <!-- Hero Section: Bulk Material Deals -->
 <section class="relative w-full h-[480px] md:h-[600px] overflow-hidden bg-inverse-surface">
-<img class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-multiply" data-alt="A cinematic, low-angle shot of a vast construction site warehouse with stacks of high-quality cement bags and organized steel rebar bundles. The lighting is dramatic and industrial, with warm safety-orange glows from overhead crane lights contrasting against cool charcoal shadows. The atmosphere is professional, efficient, and heavy-duty, reflecting the durability of BPD LTD's bulk procurement inventory. Every detail of the construction materials is sharp and authoritative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNplhtTgpG7Ir_kQrCtQO8k52JvaTC3Snt4LqhDvtUx8lgBbTt3HZqBG9eRSMgoiLGjhmZF3-soEPNqfhR3VBLwNwZdOgPc5k-dwO8nTdaOt2ubsxGS73RQ9F0H_WJ9Gc0iTLmMAYM3MqlrWLSO2Wu7JQDIgQFFjihM46monw3g1Wk_FvZpx7YziqKEDeiwDjdnlG_-thnQ6XpZvoex-nzCrhC1OC547rf-iCvOqe8J5wZRJ2m7vDhV-p37LRLvXj5R7ur5koBW4z2"/>
+<img class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-multiply animate-hero-bg" data-alt="A cinematic, low-angle shot of a vast construction site warehouse with stacks of high-quality cement bags and organized steel rebar bundles. The lighting is dramatic and industrial, with warm safety-orange glows from overhead crane lights contrasting against cool charcoal shadows. The atmosphere is professional, efficient, and heavy-duty, reflecting the durability of BPD LTD's bulk procurement inventory. Every detail of the construction materials is sharp and authoritative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNplhtTgpG7Ir_kQrCtQO8k52JvaTC3Snt4LqhDvtUx8lgBbTt3HZqBG9eRSMgoiLGjhmZF3-soEPNqfhR3VBLwNwZdOgPc5k-dwO8nTdaOt2ubsxGS73RQ9F0H_WJ9Gc0iTLmMAYM3MqlrWLSO2Wu7JQDIgQFFjihM46monw3g1Wk_FvZpx7YziqKEDeiwDjdnlG_-thnQ6XpZvoex-nzCrhC1OC547rf-iCvOqe8J5wZRJ2m7vDhV-p37LRLvXj5R7ur5koBW4z2"/>
 <div class="relative z-10 h-full max-w-max-width mx-auto px-container-padding-mobile flex flex-col justify-center items-start">
-<span class="bg-primary px-3 py-1 text-white font-label-caps text-label-caps mb-4 rounded-sm">SITE DIRECT PRICING</span>
-<h1 class="font-display-lg text-display-lg text-white mb-6 max-w-2xl uppercase italic tracking-tighter">Bulk Material Deals</h1>
-<p class="font-body-lg text-body-lg text-surface-container-highest mb-8 max-w-xl">Get uncompromised industrial quality at scale. Direct procurement for large-scale infrastructure and commercial projects.</p>
-<div class="flex flex-wrap gap-4">
+<span class="bg-primary px-3 py-1 text-white font-label-caps text-label-caps mb-4 rounded-sm animate-fade-in-up">SITE DIRECT PRICING</span>
+<h1 class="font-display-lg text-display-lg text-white mb-6 max-w-2xl uppercase italic tracking-tighter animate-fade-in-up delay-100">Bulk Material Deals</h1>
+<p class="font-body-lg text-body-lg text-surface-container-highest mb-8 max-w-xl animate-fade-in-up delay-200">Get uncompromised industrial quality at scale. Direct procurement for large-scale infrastructure and commercial projects.</p>
+<div class="flex flex-wrap gap-4 animate-fade-in-up delay-300">
 <a href="cement.html" class="bg-primary text-white font-bold px-8 py-4 uppercase tracking-wider hover:brightness-110 transition-all active:scale-95 inline-block text-center">Shop Bulk Supplies</a>
 </div>
 </div>
